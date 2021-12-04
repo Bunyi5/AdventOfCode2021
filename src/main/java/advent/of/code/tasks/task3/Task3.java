@@ -1,21 +1,21 @@
-package tasks;
+package advent.of.code.tasks.task3;
 
 import java.io.FileNotFoundException;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import helper.Helper;
+import advent.of.code.helper.Helper;
 
 public class Task3 {
 
     public static void main(String[] args) throws FileNotFoundException {
         List<String> binaryList = Helper.convertTxtToStringList("input3.txt");
 
-        System.out.println(calculatePowerConsumption(binaryList));
+        System.out.println("Power consumption: " + calculatePowerConsumption(binaryList));
 
         int oxygen = calculateLifeSupportRating(binaryList, LifeSupportType.OXYGEN_GENERATOR);
         int co2 = calculateLifeSupportRating(binaryList, LifeSupportType.CO2_SCRUBBER);
-        System.out.println(oxygen * co2);
+        System.out.println("Life support rating: " + oxygen * co2);
     }
 
     private static int calculatePowerConsumption(List<String> binaryList) {

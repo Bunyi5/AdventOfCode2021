@@ -1,4 +1,4 @@
-package helper;
+package advent.of.code.helper;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -9,7 +9,7 @@ import java.util.Scanner;
 public class Helper {
 
     public static Scanner readFileWithScanner(String fileName) throws FileNotFoundException {
-        File file = new File("C:\\work\\AdventOfCode\\resources\\" + fileName);
+        File file = new File("src/main/resources/" + fileName);
         return new Scanner(file);
     }
 

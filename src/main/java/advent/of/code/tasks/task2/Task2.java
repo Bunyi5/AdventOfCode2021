@@ -1,9 +1,9 @@
-package tasks;
+package advent.of.code.tasks.task2;
 
 import java.io.FileNotFoundException;
 import java.util.List;
 
-import helper.Helper;
+import advent.of.code.helper.Helper;
 
 public class Task2 {
 

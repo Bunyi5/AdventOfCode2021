@@ -14,8 +14,8 @@ public class Task4 {
         List<Integer> drawnNumbers = BingoConverter.createDrawnNumbers(bingoContent);
         List<BingoTable> bingoTables = BingoConverter.createBingoTables(bingoContent);
 
-        System.out.println(firstWinScore(drawnNumbers, bingoTables));
-        System.out.println(lastWinScore(drawnNumbers, bingoTables));
+        System.out.println("First win score: " + firstWinScore(drawnNumbers, bingoTables));
+        System.out.println("Last win score: " + lastWinScore(drawnNumbers, bingoTables));
     }
 
     private static int firstWinScore(List<Integer> drawnNumbers, List<BingoTable> bingoTables) {

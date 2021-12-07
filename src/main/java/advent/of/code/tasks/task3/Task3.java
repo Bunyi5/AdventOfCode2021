@@ -1,6 +1,6 @@
 package advent.of.code.tasks.task3;
 
-import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -8,8 +8,8 @@ import advent.of.code.helper.Helper;
 
 public class Task3 {
 
-    public static void main(String[] args) throws FileNotFoundException {
-        List<String> binaryList = Helper.convertTxtToStringList("input3.txt");
+    public static void main(String[] args) throws IOException {
+        List<String> binaryList = Helper.convertTxtToStringList("input3.txt", Helper.LINE_SEPARATOR);
 
         System.out.println("Power consumption: " + calculatePowerConsumption(binaryList));
 

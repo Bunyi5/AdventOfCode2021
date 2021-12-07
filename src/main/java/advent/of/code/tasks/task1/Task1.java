@@ -1,14 +1,14 @@
 package advent.of.code.tasks.task1;
 
-import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.List;
 
 import advent.of.code.helper.Helper;
 
 public class Task1 {
 
-    public static void main(String[] args) throws FileNotFoundException {
-        List<Integer> intList = Helper.convertTxtToIntList("input1.txt");
+    public static void main(String[] args) throws IOException {
+        List<Integer> intList = Helper.convertTxtToIntList("input1.txt", Helper.LINE_SEPARATOR);
 
         System.out.println("One measurement: " + doOneMeasurement(intList));
         System.out.println("Three measurement: " + doThreeMeasurement(intList));

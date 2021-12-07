@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import advent.of.code.helper.Helper;
+
 public class VectorHelper {
 
     public static List<Vector> convertVectorStringListToVectorList(List<String> vectorStringList) {
@@ -15,8 +17,8 @@ public class VectorHelper {
             String from = fromAndWhere[0];
             String where = fromAndWhere[1];
 
-            String[] fromXY = from.split(",");
-            String[] whereXY = where.split(",");
+            String[] fromXY = from.split(Helper.COMMA);
+            String[] whereXY = where.split(Helper.COMMA);
 
             int fromX = Integer.parseInt(fromXY[0]);
             int fromY = Integer.parseInt(fromXY[1]);

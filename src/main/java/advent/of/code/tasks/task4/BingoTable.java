@@ -5,11 +5,9 @@ import java.util.Arrays;
 public class BingoTable {
 
     private BingoNumber[][] table;
-    private boolean alreadyWon;
 
     public BingoTable(BingoNumber[][] table) {
         this.table = table;
-        this.alreadyWon = false;
     }
 
     public BingoNumber[][] getTable() {
@@ -18,14 +16,6 @@ public class BingoTable {
 
     public void setTable(BingoNumber[][] table) {
         this.table = table;
-    }
-
-    public boolean isAlreadyWon() {
-        return alreadyWon;
-    }
-
-    public void setAlreadyWon(boolean alreadyWon) {
-        this.alreadyWon = alreadyWon;
     }
 
     public void setNumberMarked(int drawnNumber) {

@@ -1,14 +1,14 @@
 package advent.of.code.tasks.task2;
 
-import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.List;
 
 import advent.of.code.helper.Helper;
 
 public class Task2 {
 
-    public static void main(String[] args) throws FileNotFoundException {
-        List<String> commandList = Helper.convertTxtToStringList("input2.txt");
+    public static void main(String[] args) throws IOException {
+        List<String> commandList = Helper.convertTxtToStringList("input2.txt", Helper.LINE_SEPARATOR);
 
         System.out.println("Final position multiplied by depth: " + calculateFinalPositionAndDepth(commandList));
         System.out.println("Final position multiplied by depth with aim: " + calculateFinalPositionAndDepthWithAim(commandList));
@@ -19,7 +19,7 @@ public class Task2 {
         int depth = 0;
 
         for (String command : commandList) {
-            String[] directionAndAmount = command.split(" ", 2);
+            String[] directionAndAmount = command.split(Helper.WHITESPACE, 2);
             String direction = directionAndAmount[0];
             int amount = Integer.parseInt(directionAndAmount[1]);
 
@@ -39,7 +39,7 @@ public class Task2 {
         int aim = 0;
 
         for (String command : commandList) {
-            String[] directionAndAmount = command.split(" ", 2);
+            String[] directionAndAmount = command.split(Helper.WHITESPACE, 2);
             String direction = directionAndAmount[0];
             int amount = Integer.parseInt(directionAndAmount[1]);
 

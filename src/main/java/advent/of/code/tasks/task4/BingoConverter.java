@@ -5,12 +5,14 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import advent.of.code.helper.Helper;
+
 public class BingoConverter {
 
     public static List<Integer> createDrawnNumbers(String bingoContent) {
-        String[] split = bingoContent.split("(\\r\\n){2}");
+        String[] split = bingoContent.split("(" + Helper.LINE_SEPARATOR +"){2}");
 
-        return Arrays.stream(split[0].split(","))
+        return Arrays.stream(split[0].split(Helper.COMMA))
             .map(Integer::parseInt)
             .collect(Collectors.toList());
     }
@@ -25,7 +27,7 @@ public class BingoConverter {
 
             for (int i = 0; i < bingoTableString.size(); i++) {
 
-                List<Integer> bingoTableRow = Arrays.stream(bingoTableString.get(i).split("\\s+"))
+                List<Integer> bingoTableRow = Arrays.stream(bingoTableString.get(i).split(Helper.WHITESPACE))
                     .filter(s -> !s.isEmpty())
                     .map(Integer::parseInt)
                     .collect(Collectors.toList());
@@ -43,11 +45,11 @@ public class BingoConverter {
 
     private static List<List<String>> divideBingoAllToTables(String bingoContent) {
         List<List<String>> result = new ArrayList<>();
-        List<String> bingoTablesString = Arrays.stream(bingoContent.split("(\\r\\n){2}")).collect(Collectors.toList());
+        List<String> bingoTablesString = Arrays.stream(bingoContent.split("(" + Helper.LINE_SEPARATOR + "){2}")).collect(Collectors.toList());
         bingoTablesString.remove(0);
 
         for (String bingoTableString : bingoTablesString) {
-            List<String> bingoTableRows = Arrays.stream(bingoTableString.split("\\r\\n")).collect(Collectors.toList());
+            List<String> bingoTableRows = Arrays.stream(bingoTableString.split(Helper.LINE_SEPARATOR)).collect(Collectors.toList());
             result.add(bingoTableRows);
         }
 

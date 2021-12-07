@@ -1,9 +1,7 @@
 package advent.of.code.tasks.task6;
 
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import advent.of.code.helper.Helper;
 
@@ -16,11 +14,7 @@ public class Task6 {
     private static final int FISH_DEFAULT_RESPAWN_VALUE = 7;
 
     public static void main(String[] args) throws IOException {
-        String stringList = Helper.convertTxtToStringContent("input6-test.txt");
-
-        List<Integer> lanternFishList = Arrays.stream(stringList.split(","))
-            .map(Integer::parseInt)
-            .collect(Collectors.toList());
+        List<Integer> lanternFishList = Helper.convertTxtToIntList("input6.txt", Helper.COMMA);
 
         long populateSum80 = lanternFishList.parallelStream()
                 .map(fishInitialValue ->

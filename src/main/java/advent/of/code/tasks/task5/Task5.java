@@ -1,14 +1,14 @@
 package advent.of.code.tasks.task5;
 
-import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.List;
 
 import advent.of.code.helper.Helper;
 
 public class Task5 {
 
-    public static void main(String[] args) throws FileNotFoundException {
-        List<String> vectorStringList = Helper.convertTxtToStringList("input5.txt");
+    public static void main(String[] args) throws IOException {
+        List<String> vectorStringList = Helper.convertTxtToStringList("input5.txt", Helper.LINE_SEPARATOR);
         List<Vector> vectorList = VectorHelper.convertVectorStringListToVectorList(vectorStringList);
 
         OceanFloorMap oceanFloorMap = new OceanFloorMap(

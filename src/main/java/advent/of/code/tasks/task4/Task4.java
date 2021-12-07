@@ -5,17 +5,31 @@ import java.util.ArrayList;
 import java.util.List;
 
 import advent.of.code.helper.Helper;
+import advent.of.code.helper.RunType;
 
 public class Task4 {
 
+    private static final int TASK_NUMBER = 4;
+
     public static void main(String[] args) throws IOException {
-        String bingoContent = Helper.convertTxtToStringContent("input4.txt");
+        runMain(RunType.TEST);
+        runMain(RunType.REAL);
+    }
+
+    private static void runMain(RunType runType) throws IOException {
+        System.out.println(runType);
+        String bingoContent = Helper.convertTxtToStringContent("input" + TASK_NUMBER + runType + ".txt");
 
         List<Integer> drawnNumbers = BingoConverter.createDrawnNumbers(bingoContent);
         List<BingoTable> bingoTables = BingoConverter.createBingoTables(bingoContent);
 
-        System.out.println("First win score: " + firstWinScore(drawnNumbers, bingoTables));
-        System.out.println("Last win score: " + lastWinScore(drawnNumbers, bingoTables));
+        int firstWinScore = firstWinScore(drawnNumbers, bingoTables);
+        System.out.println("First win score: " + firstWinScore);
+        Helper.assertResults(firstWinScore, TASK_NUMBER, 1, runType);
+
+        int lastWinScore = lastWinScore(drawnNumbers, bingoTables);
+        System.out.println("Last win score: " + lastWinScore);
+        Helper.assertResults(lastWinScore, TASK_NUMBER, 2, runType);
     }
 
     private static int firstWinScore(List<Integer> drawnNumbers, List<BingoTable> bingoTables) {

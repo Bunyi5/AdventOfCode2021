@@ -4,14 +4,28 @@ import java.io.IOException;
 import java.util.List;
 
 import advent.of.code.helper.Helper;
+import advent.of.code.helper.RunType;
 
 public class Task2 {
 
-    public static void main(String[] args) throws IOException {
-        List<String> commandList = Helper.convertTxtToStringList("input2.txt", Helper.LINE_SEPARATOR);
+    private static final int TASK_NUMBER = 2;
 
-        System.out.println("Final position multiplied by depth: " + calculateFinalPositionAndDepth(commandList));
-        System.out.println("Final position multiplied by depth with aim: " + calculateFinalPositionAndDepthWithAim(commandList));
+    public static void main(String[] args) throws IOException {
+        runMain(RunType.TEST);
+        runMain(RunType.REAL);
+    }
+
+    private static void runMain(RunType runType) throws IOException {
+        System.out.println(runType);
+        List<String> commandList = Helper.convertTxtToStringList("input" + TASK_NUMBER + runType + ".txt", Helper.LINE_SEPARATOR);
+
+        int finalPositionAndDepth = calculateFinalPositionAndDepth(commandList);
+        System.out.println("Final position multiplied by depth: " + finalPositionAndDepth);
+        Helper.assertResults(finalPositionAndDepth, TASK_NUMBER, 1, runType);
+
+        int finalPositionAndDepthWithAim = calculateFinalPositionAndDepthWithAim(commandList);
+        System.out.println("Final position multiplied by depth with aim: " + finalPositionAndDepthWithAim);
+        Helper.assertResults(finalPositionAndDepthWithAim, TASK_NUMBER, 2, runType);
     }
 
     private static int calculateFinalPositionAndDepth(List<String> commandList) {

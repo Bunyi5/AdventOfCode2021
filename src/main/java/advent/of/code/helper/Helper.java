@@ -34,4 +34,18 @@ public class Helper {
         return Arrays.stream(content.split(separator))
             .collect(Collectors.toList());
     }
+
+    public static void assertResults(Object a, int taskNumber, int partTaskNumber, RunType runType) {
+        String reset = "\033[0m";
+        String red = "\033[0;31m";
+        String green = "\033[0;32m";
+
+        Object b = Answers.valueOf("TASK_" + taskNumber + "_" + partTaskNumber + "_" + runType).getAnswer();
+
+        if (!a.equals(b)) {
+            System.out.println(red + "The result is not right!" + reset);
+        } else {
+            System.out.println(green + "The result is right!" + reset);
+        }
+    }
 }

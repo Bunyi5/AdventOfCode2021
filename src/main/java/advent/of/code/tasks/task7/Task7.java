@@ -7,20 +7,30 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import advent.of.code.helper.Helper;
+import advent.of.code.helper.RunType;
 
 public class Task7 {
 
+    private static final int TASK_NUMBER = 7;
+
     public static void main(String[] args) throws IOException {
-        List<Integer> crabPositions = Helper.convertTxtToIntList("input7.txt", Helper.COMMA);
+        runMain(RunType.TEST);
+        runMain(RunType.REAL);
+    }
+
+    private static void runMain(RunType runType) throws IOException {
+        System.out.println(runType);
+        List<Integer> crabPositions = Helper.convertTxtToIntList("input" + TASK_NUMBER + runType + ".txt", Helper.COMMA);
 
         List<Integer> positions = generatePositions(crabPositions);
 
         int bestFuel = calculateBestFuelOption(crabPositions, positions, false);
+        System.out.println("Best fuel: " + bestFuel);
+        Helper.assertResults(bestFuel, TASK_NUMBER, 1, runType);
 
         int bestExpensiveFuel = calculateBestFuelOption(crabPositions, positions, true);
-
-        System.out.println("Best fuel: " + bestFuel);
         System.out.println("Best expensive fuel: " + bestExpensiveFuel);
+        Helper.assertResults(bestExpensiveFuel, TASK_NUMBER, 2, runType);
     }
 
     private static int calculateBestFuelOption(List<Integer> crabPositions, List<Integer> positions, boolean isExpensive) {

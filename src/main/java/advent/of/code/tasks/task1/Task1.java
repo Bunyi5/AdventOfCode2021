@@ -4,14 +4,28 @@ import java.io.IOException;
 import java.util.List;
 
 import advent.of.code.helper.Helper;
+import advent.of.code.helper.RunType;
 
 public class Task1 {
 
-    public static void main(String[] args) throws IOException {
-        List<Integer> intList = Helper.convertTxtToIntList("input1.txt", Helper.LINE_SEPARATOR);
+    private static final int TASK_NUMBER = 1;
 
-        System.out.println("One measurement: " + doOneMeasurement(intList));
-        System.out.println("Three measurement: " + doThreeMeasurement(intList));
+    public static void main(String[] args) throws IOException {
+        runMain(RunType.TEST);
+        runMain(RunType.REAL);
+    }
+
+    public static void runMain(RunType runType) throws IOException {
+        System.out.println(runType);
+        List<Integer> intListTest = Helper.convertTxtToIntList("input" + TASK_NUMBER + runType + ".txt", Helper.LINE_SEPARATOR);
+
+        int oneMeasurement = doOneMeasurement(intListTest);
+        System.out.println("One measurement: " + oneMeasurement);
+        Helper.assertResults(oneMeasurement, TASK_NUMBER, 1, runType);
+
+        int threeMeasurement = doThreeMeasurement(intListTest);
+        System.out.println("Three measurement test: " + threeMeasurement);
+        Helper.assertResults(threeMeasurement, TASK_NUMBER, 2, runType);
     }
 
     private static int doOneMeasurement(List<Integer> intList) {

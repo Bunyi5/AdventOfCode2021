@@ -5,17 +5,28 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import advent.of.code.helper.Helper;
+import advent.of.code.helper.RunType;
 
 public class Task3 {
 
+    private static final int TASK_NUMBER = 3;
+
     public static void main(String[] args) throws IOException {
-        List<String> binaryList = Helper.convertTxtToStringList("input3.txt", Helper.LINE_SEPARATOR);
+        runMain(RunType.TEST);
+        runMain(RunType.REAL);
+    }
 
-        System.out.println("Power consumption: " + calculatePowerConsumption(binaryList));
+    private static void runMain(RunType runType) throws IOException {
+        System.out.println(runType);
+        List<String> binaryList = Helper.convertTxtToStringList("input" + TASK_NUMBER + runType + ".txt", Helper.LINE_SEPARATOR);
 
-        int oxygen = calculateLifeSupportRating(binaryList, LifeSupportType.OXYGEN_GENERATOR);
-        int co2 = calculateLifeSupportRating(binaryList, LifeSupportType.CO2_SCRUBBER);
-        System.out.println("Life support rating: " + oxygen * co2);
+        int powerConsumption = calculatePowerConsumption(binaryList);
+        System.out.println("Power consumption: " + powerConsumption);
+        Helper.assertResults(powerConsumption, TASK_NUMBER, 1, runType);
+
+        int lifeSupportRatingResult = calculateLifeSupportRatingResult(binaryList);
+        System.out.println("Life support rating: " + lifeSupportRatingResult);
+        Helper.assertResults(lifeSupportRatingResult, TASK_NUMBER, 2, runType);
     }
 
     private static int calculatePowerConsumption(List<String> binaryList) {
@@ -50,6 +61,14 @@ public class Task3 {
         int epsilonRate = Integer.parseInt(epsilonRateString.toString(), 2);
 
         return gammaRate * epsilonRate;
+    }
+
+    private static int calculateLifeSupportRatingResult(List<String> binaryList) {
+
+        int oxygen = calculateLifeSupportRating(binaryList, LifeSupportType.OXYGEN_GENERATOR);
+        int co2 = calculateLifeSupportRating(binaryList, LifeSupportType.CO2_SCRUBBER);
+
+        return oxygen * co2;
     }
 
     private static int calculateLifeSupportRating(List<String> binaryList, LifeSupportType lifeSupportType) {
@@ -87,22 +106,5 @@ public class Task3 {
         }
 
         return Integer.parseInt(binaryList.get(0), 2);
-    }
-
-    private enum LifeSupportType {
-        OXYGEN_GENERATOR {
-            @Override
-            public boolean apply(int x1, int x2) {
-                return x1 >= x2;
-            }
-        },
-        CO2_SCRUBBER {
-            @Override
-            public boolean apply(int x1, int x2) {
-                return x1 < x2;
-            }
-        };
-
-        public abstract boolean apply(int x1, int x2);
     }
 }

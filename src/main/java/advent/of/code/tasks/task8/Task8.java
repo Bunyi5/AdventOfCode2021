@@ -26,9 +26,11 @@ public class Task8 {
 
         int uniqueValues = countUniqueValues(outputValues);
         System.out.println("1, 4, 7, 8 values appear time: " + uniqueValues);
+        Helper.assertResults(uniqueValues, TASK_NUMBER, 1, runType);
 
         int sumOfOutputValues = getSumOfOutputValues(signalPatterns, outputValues);
         System.out.println("Sum of output values: " + sumOfOutputValues);
+        Helper.assertResults(sumOfOutputValues, TASK_NUMBER, 2, runType);
     }
 
     private static int getSumOfOutputValues(List<List<String>> signalPatterns, List<List<String>> outputValues) {

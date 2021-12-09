@@ -25,59 +25,53 @@ public class SevenSegmentDisplayDecoder {
         "9", new String[] {"0,1,2,3,5,6", ""}
     );
 
-    private List<String> resultChars = Arrays.asList("", "", "", "", "", "", "");
+    private final List<String> resultChars = Arrays.asList("", "", "", "", "", "", "");
+
+    private final int[] swapAndFillPairTwoFive = {2, 5};
+    private final int[] swapAndFillPairOneThree = {1, 3};
+    private final int[] swapAndFillPairFourSix = {4, 6};
 
     public void setResultChars(List<String> signalPattern) {
         List<String[]> signalPatternArray = signalPattern.stream()
             .sorted(Comparator.comparingInt(String::length))
-            .map(signal -> signal.split(""))
+            .map(signal -> signal.split(Helper.NONE))
             .collect(Collectors.toList());
 
         // One
-        resultChars.set(2, signalPatternArray.get(0)[0]);
-        resultChars.set(5, signalPatternArray.get(0)[1]);
-
+        fillResultChars(signalPatternArray, 0, swapAndFillPairTwoFive);
         // Seven
-        String[] seven = signalPatternArray.get(1);
-        seven = Arrays.stream(seven)
-            .filter(s -> !resultChars.contains(s))
-            .toArray(String[]::new);
-        resultChars.set(0, seven[0]);
-
+        fillResultChars(signalPatternArray, 1, new int[] {0});
         // Four
-        String[] four = signalPatternArray.get(2);
-        four = Arrays.stream(four)
-            .filter(s -> !resultChars.contains(s))
-            .toArray(String[]::new);
-        resultChars.set(1, four[0]);
-        resultChars.set(3, four[1]);
-
+        fillResultChars(signalPatternArray, 2, swapAndFillPairOneThree);
         // Eight
-        String[] eight = signalPatternArray.get(9);
-        eight = Arrays.stream(eight)
-            .filter(s -> !resultChars.contains(s))
-            .toArray(String[]::new);
-        resultChars.set(4, eight[0]);
-        resultChars.set(6, eight[1]);
+        fillResultChars(signalPatternArray, 9, swapAndFillPairFourSix);
 
-        // Six, Nine, Zero
         List<String[]> sixChars = signalPatternArray.stream()
             .filter(strings -> strings.length == 6)
             .collect(Collectors.toList());
 
-        boolean sixValid = sixChars.stream().anyMatch(sixChar -> !Arrays.asList(sixChar).contains(resultChars.get(2)));
-        if (!sixValid) {
-            Collections.swap(resultChars, 2, 5);
-        }
+        // Six
+        swapIfWrongInResultChars(sixChars, 2, swapAndFillPairTwoFive);
+        // Zero
+        swapIfWrongInResultChars(sixChars, 3, swapAndFillPairOneThree);
+        // Nine
+        swapIfWrongInResultChars(sixChars, 4, swapAndFillPairFourSix);
+    }
 
-        boolean nineValid = sixChars.stream().anyMatch(sixChar -> !Arrays.asList(sixChar).contains(resultChars.get(4)));
-        if (!nineValid) {
-            Collections.swap(resultChars, 4, 6);
-        }
+    private void fillResultChars(List<String[]> signalPatternArray, int index, int[] setIndexes) {
+        String[] number = signalPatternArray.get(index);
+        number = Arrays.stream(number)
+            .filter(s -> !resultChars.contains(s))
+            .toArray(String[]::new);
 
-        boolean zeroValid = sixChars.stream().anyMatch(sixChar -> !Arrays.asList(sixChar).contains(resultChars.get(3)));
-        if (!zeroValid) {
-            Collections.swap(resultChars, 1, 3);
+        for (int i = 0; i < setIndexes.length; i++) {
+            resultChars.set(setIndexes[i], number[i]);
+        }
+    }
+
+    private void swapIfWrongInResultChars(List<String[]> sixChars, int index, int[] swapIndexes) {
+        if (sixChars.stream().allMatch(sixChar -> Arrays.asList(sixChar).contains(resultChars.get(index)))) {
+            Collections.swap(resultChars, swapIndexes[0], swapIndexes[1]);
         }
     }
 

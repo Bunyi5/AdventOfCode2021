@@ -1,6 +1,7 @@
 package advent.of.code.tasks.task6;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 
 import advent.of.code.helper.Helper;
@@ -13,9 +14,6 @@ public class Task6 {
     private static final int DAYS80 = 80;
     private static final int DAYS256 = 256;
 
-    private static final int FISH_DEFAULT_INITIAL_VALUE = 9;
-    private static final int FISH_DEFAULT_RESPAWN_VALUE = 7;
-
     public static void main(String[] args) throws IOException {
         runMain(RunType.TEST);
         runMain(RunType.REAL);
@@ -25,37 +23,31 @@ public class Task6 {
         System.out.println(runType);
         List<Integer> lanternFishList = Helper.convertTxtToIntList("input" + TASK_NUMBER + runType + ".txt", Helper.COMMA);
 
-        long populateSum80 = lanternFishList.parallelStream()
-            .map(fishInitialValue ->
-                populateLanternFishRecursively(fishInitialValue, 0L, DAYS80)
-            ).reduce(0L, Long::sum);
+        long populateSum80 = populateLanternFish(lanternFishList, DAYS80);
         System.out.println("Lantern fish population after " + DAYS80 + " days: " + populateSum80);
         Helper.assertResults(populateSum80, TASK_NUMBER, 1, runType);
 
-        // Runs for at least 10 minutes
-        long populateSum256 = lanternFishList.parallelStream()
-            .map(fishInitialValue ->
-                populateLanternFishRecursively(fishInitialValue, 0L, DAYS256)
-            ).reduce(0L, Long::sum);
+        long populateSum256 = populateLanternFish(lanternFishList, DAYS256);
         System.out.println("Lantern fish population after " + DAYS256 + " days: " + populateSum256);
         Helper.assertResults(populateSum256, TASK_NUMBER, 2, runType);
     }
 
-    private static long populateLanternFishRecursively(int fishInitialValue, long populateSum, int days) {
-        int remainingDays = days - fishInitialValue;
-        populateSum++;
+    private static long populateLanternFish(List<Integer> lanternFishList, int days) {
+        long[] lanternFishArray = new long[10];
 
-        while (remainingDays > 0) {
-
-            if ((remainingDays - FISH_DEFAULT_INITIAL_VALUE) > 0) {
-                populateSum = populateLanternFishRecursively(FISH_DEFAULT_INITIAL_VALUE, populateSum, remainingDays);
-            } else {
-                populateSum++;
-            }
-
-            remainingDays -= FISH_DEFAULT_RESPAWN_VALUE;
+        for (Integer integer : lanternFishList) {
+            lanternFishArray[integer]++;
         }
 
-        return populateSum;
+        for (int i = 0; i < days - 1; i++) {
+
+            System.arraycopy(lanternFishArray, 1, lanternFishArray, 0, lanternFishArray.length - 1);
+
+            lanternFishArray[7] += lanternFishArray[0];
+            lanternFishArray[9] = lanternFishArray[0];
+            lanternFishArray[0] = 0;
+        }
+
+        return Arrays.stream(lanternFishArray).reduce(0, Long::sum);
     }
 }

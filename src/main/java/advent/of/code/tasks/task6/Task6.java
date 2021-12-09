@@ -21,7 +21,7 @@ public class Task6 {
 
     private static void runMain(RunType runType) throws IOException {
         System.out.println(runType);
-        List<Integer> lanternFishList = Helper.convertTxtToIntList("input" + TASK_NUMBER + runType + ".txt", Helper.COMMA);
+        List<Integer> lanternFishList = Helper.convertTxtToIntList(TASK_NUMBER, runType, Helper.COMMA);
 
         long populateSum80 = populateLanternFish(lanternFishList, DAYS80);
         System.out.println("Lantern fish population after " + DAYS80 + " days: " + populateSum80);

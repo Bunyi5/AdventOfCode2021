@@ -17,28 +17,28 @@ public class Helper {
     public static final String PIPE = "[|]";
     public static final String NONE = "";
 
-    public static String convertTxtToStringContent(String fileName) throws IOException {
-        Path path = Path.of(RESOURCE_PATH, fileName);
+    public static String convertTxtToStringContent(int taskNumber, RunType runType) throws IOException {
+        Path path = Path.of(RESOURCE_PATH, "input" + taskNumber + runType + ".txt");
         return Files.readString(path);
     }
 
-    public static List<Integer> convertTxtToIntList(String fileName, String separator) throws IOException {
-        String content = convertTxtToStringContent(fileName);
+    public static List<Integer> convertTxtToIntList(int taskNumber, RunType runType, String separator) throws IOException {
+        String content = convertTxtToStringContent(taskNumber, runType);
 
         return Arrays.stream(content.split(separator))
             .map(Integer::parseInt)
             .collect(Collectors.toList());
     }
 
-    public static List<String> convertTxtToStringList(String fileName, String separator) throws IOException {
-        String content = convertTxtToStringContent(fileName);
+    public static List<String> convertTxtToStringList(int taskNumber, RunType runType, String separator) throws IOException {
+        String content = convertTxtToStringContent(taskNumber, runType);
 
         return Arrays.stream(content.split(separator))
             .collect(Collectors.toList());
     }
 
-    public static int[][] convertTxtToIntArray(String fileName, String separator) throws IOException {
-        List<String> stringList = convertTxtToStringList(fileName, Helper.LINE_SEPARATOR);
+    public static int[][] convertTxtToIntArray(int taskNumber, RunType runType, String separator) throws IOException {
+        List<String> stringList = convertTxtToStringList(taskNumber, runType, Helper.LINE_SEPARATOR);
 
         return stringList.stream()
             .map(row -> row.split(separator))

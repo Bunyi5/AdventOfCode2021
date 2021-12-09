@@ -16,7 +16,7 @@ public class Task9 {
 
     private static void runMain(RunType runType) throws IOException {
         System.out.println(runType);
-        int[][] heightMapArray = Helper.convertTxtToIntArray("input" + TASK_NUMBER + runType + ".txt", Helper.NONE);
+        int[][] heightMapArray = Helper.convertTxtToIntArray(TASK_NUMBER, runType, Helper.NONE);
         HeightMap heightMap = new HeightMap(heightMapArray);
 
         int sumOfRiskLevels = heightMap.getSumOfRiskLevels();

@@ -15,9 +15,9 @@ public class Task1 {
         runMain(RunType.REAL);
     }
 
-    public static void runMain(RunType runType) throws IOException {
+    private static void runMain(RunType runType) throws IOException {
         System.out.println(runType);
-        List<Integer> intListTest = Helper.convertTxtToIntList("input" + TASK_NUMBER + runType + ".txt", Helper.LINE_SEPARATOR);
+        List<Integer> intListTest = Helper.convertTxtToIntList(TASK_NUMBER, runType, Helper.LINE_SEPARATOR);
 
         int oneMeasurement = doOneMeasurement(intListTest);
         System.out.println("One measurement: " + oneMeasurement);

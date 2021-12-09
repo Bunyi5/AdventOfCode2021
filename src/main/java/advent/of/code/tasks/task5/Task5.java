@@ -17,7 +17,7 @@ public class Task5 {
 
     private static void runMain(RunType runType) throws IOException {
         System.out.println(runType);
-        List<String> vectorStringList = Helper.convertTxtToStringList("input" + TASK_NUMBER + runType + ".txt", Helper.LINE_SEPARATOR);
+        List<String> vectorStringList = Helper.convertTxtToStringList(TASK_NUMBER, runType, Helper.LINE_SEPARATOR);
         List<Vector> vectorList = VectorHelper.convertVectorStringListToVectorList(vectorStringList);
 
         OceanFloorMap oceanFloorMap = new OceanFloorMap(

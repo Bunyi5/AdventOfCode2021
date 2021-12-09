@@ -18,7 +18,7 @@ public class Task4 {
 
     private static void runMain(RunType runType) throws IOException {
         System.out.println(runType);
-        String bingoContent = Helper.convertTxtToStringContent("input" + TASK_NUMBER + runType + ".txt");
+        String bingoContent = Helper.convertTxtToStringContent(TASK_NUMBER, runType);
 
         List<Integer> drawnNumbers = BingoConverter.createDrawnNumbers(bingoContent);
         List<BingoTable> bingoTables = BingoConverter.createBingoTables(bingoContent);

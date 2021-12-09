@@ -19,7 +19,7 @@ public class Task8 {
 
     private static void runMain(RunType runType) throws IOException {
         System.out.println(runType);
-        List<String> signalPatternsAndOutputs = Helper.convertTxtToStringList("input" + TASK_NUMBER + runType + ".txt", Helper.LINE_SEPARATOR);
+        List<String> signalPatternsAndOutputs = Helper.convertTxtToStringList(TASK_NUMBER, runType, Helper.LINE_SEPARATOR);
 
         List<List<String>> signalPatterns = getSignalPatternsOrOutputs(signalPatternsAndOutputs, 0);
         List<List<String>> outputValues = getSignalPatternsOrOutputs(signalPatternsAndOutputs, 1);

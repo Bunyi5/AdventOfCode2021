@@ -17,7 +17,7 @@ public class Task2 {
 
     private static void runMain(RunType runType) throws IOException {
         System.out.println(runType);
-        List<String> commandList = Helper.convertTxtToStringList("input" + TASK_NUMBER + runType + ".txt", Helper.LINE_SEPARATOR);
+        List<String> commandList = Helper.convertTxtToStringList(TASK_NUMBER, runType, Helper.LINE_SEPARATOR);
 
         int finalPositionAndDepth = calculateFinalPositionAndDepth(commandList);
         System.out.println("Final position multiplied by depth: " + finalPositionAndDepth);

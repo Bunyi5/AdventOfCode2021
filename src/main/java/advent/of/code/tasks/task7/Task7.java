@@ -20,7 +20,7 @@ public class Task7 {
 
     private static void runMain(RunType runType) throws IOException {
         System.out.println(runType);
-        List<Integer> crabPositions = Helper.convertTxtToIntList("input" + TASK_NUMBER + runType + ".txt", Helper.COMMA);
+        List<Integer> crabPositions = Helper.convertTxtToIntList(TASK_NUMBER, runType, Helper.COMMA);
 
         List<Integer> positions = generatePositions(crabPositions);
 

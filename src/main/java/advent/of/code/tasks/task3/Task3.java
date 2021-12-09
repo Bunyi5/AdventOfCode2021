@@ -18,7 +18,7 @@ public class Task3 {
 
     private static void runMain(RunType runType) throws IOException {
         System.out.println(runType);
-        List<String> binaryList = Helper.convertTxtToStringList("input" + TASK_NUMBER + runType + ".txt", Helper.LINE_SEPARATOR);
+        List<String> binaryList = Helper.convertTxtToStringList(TASK_NUMBER, runType, Helper.LINE_SEPARATOR);
 
         int powerConsumption = calculatePowerConsumption(binaryList);
         System.out.println("Power consumption: " + powerConsumption);

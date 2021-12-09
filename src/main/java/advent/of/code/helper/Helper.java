@@ -14,6 +14,7 @@ public class Helper {
     public static final String LINE_SEPARATOR = "\\r\\n";
     public static final String COMMA = ",";
     public static final String WHITESPACE = "\\s+";
+    public static final String PIPE = "[|]";
 
     public static String convertTxtToStringContent(String fileName) throws IOException {
         Path path = Path.of(RESOURCE_PATH, fileName);

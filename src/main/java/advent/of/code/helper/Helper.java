@@ -59,4 +59,22 @@ public class Helper {
             System.out.println(green + "The result is right!" + reset);
         }
     }
+
+    public static void printPrimitiveMatrix(int[][] array) {
+        for (int[] ints : array) {
+            for (int anInt : ints) {
+                System.out.print(anInt + " ");
+            }
+            System.out.println();
+        }
+    }
+
+    public static void printMatrix(Object[][] array) {
+        for (Object[] objects : array) {
+            for (Object object : objects) {
+                System.out.print(object + ", ");
+            }
+            System.out.println();
+        }
+    }
 }

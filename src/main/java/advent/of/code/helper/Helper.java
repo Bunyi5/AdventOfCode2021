@@ -15,6 +15,7 @@ public class Helper {
     public static final String COMMA = ",";
     public static final String WHITESPACE = "\\s+";
     public static final String PIPE = "[|]";
+    public static final String DASH = "-";
     public static final String NONE = "";
 
     public static String convertTxtToStringContent(int taskNumber, RunType runType) throws IOException {

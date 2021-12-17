@@ -59,7 +59,20 @@ public enum Answers {
     TASK_12_1_TEST (10),
     TASK_12_2_TEST (36),
     TASK_12_1_REAL (5333),
-    TASK_12_2_REAL (146553);
+    TASK_12_2_REAL (146553),
+
+    TASK_13_1_TEST (17),
+    TASK_13_1_REAL (618),
+
+    TASK_14_1_TEST (1588L),
+    TASK_14_2_TEST (2188189693529L),
+    TASK_14_1_REAL (2435L),
+    TASK_14_2_REAL (2587447599164L),
+
+    TASK_15_1_TEST (40),
+    TASK_15_2_TEST (315),
+    TASK_15_1_REAL (373),
+    TASK_15_2_REAL (0);
 
     private final Object answer;
 

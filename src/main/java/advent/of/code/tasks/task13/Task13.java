@@ -10,7 +10,7 @@ public class Task13 {
     private static final int TASK_NUMBER = 13;
 
     public static void main(String[] args) throws IOException {
-        // runMain(RunType.TEST);
+        runMain(RunType.TEST);
         runMain(RunType.REAL);
     }
 
@@ -18,19 +18,14 @@ public class Task13 {
         System.out.println(runType);
         String paperContext = Helper.convertTxtToStringContent(TASK_NUMBER, runType);
 
-        // TransparentPaper transparentPaper1 = new TransparentPaper(paperContext);
-        // transparentPaper1.foldByLine(transparentPaper1.getInstructions().get(0));
-        // int dots = transparentPaper1.countDots();
-        // System.out.println("Visible dots after first fold: " + dots);
+        TransparentPaper transparentPaper1 = new TransparentPaper(paperContext);
+        transparentPaper1.foldByLine(transparentPaper1.getInstructions().get(0));
+        int dots = transparentPaper1.countDots();
+        System.out.println("Visible dots after first fold: " + dots);
+        Helper.assertResults(dots, TASK_NUMBER, 1, runType);
 
         TransparentPaper transparentPaper2 = new TransparentPaper(paperContext);
-        int size = transparentPaper2.getInstructions().size();
-        // size = 11;
-        for (int i = 0; i < size; i++) {
-            transparentPaper2.foldByLine(transparentPaper2.getInstructions().get(i));
-        }
+        transparentPaper2.getInstructions().forEach(transparentPaper2::foldByLine);
         transparentPaper2.printPaper();
-        System.out.println(transparentPaper2.getPaper().length);
-        System.out.println(transparentPaper2.getPaper()[0].length);
     }
 }

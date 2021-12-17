@@ -12,7 +12,7 @@ public class VectorHelper {
         List<Vector> vectorList = new ArrayList<>();
 
         for (String lines : vectorStringList) {
-            String[] fromAndWhere = lines.split(" -> ");
+            String[] fromAndWhere = lines.split(Helper.WHITESPACE + Helper.ARROW + Helper.WHITESPACE);
 
             String from = fromAndWhere[0];
             String where = fromAndWhere[1];

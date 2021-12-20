@@ -72,7 +72,7 @@ public enum Answers {
     TASK_15_1_TEST (40),
     TASK_15_2_TEST (315),
     TASK_15_1_REAL (373),
-    TASK_15_2_REAL (0);
+    TASK_15_2_REAL (2868);
 
     private final Object answer;
 
